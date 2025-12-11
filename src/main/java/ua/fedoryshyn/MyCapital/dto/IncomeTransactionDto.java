@@ -1,0 +1,23 @@
+package ua.fedoryshyn.MyCapital.dto;
+
+import java.time.LocalDateTime;
+import java.util.List;
+import java.util.UUID;
+import lombok.Getter;
+import lombok.Setter;
+
+@Getter
+@Setter
+public class IncomeTransactionDto {
+    private UUID id;
+    private UUID userId;
+    private UUID walletId;
+    private LocalDateTime createdAt;
+    private CurrencyAmountDto amount;
+    private String description;
+    private Boolean isActive;
+    private List<CashTransactionLineDto> lines;
+}
+
+
+

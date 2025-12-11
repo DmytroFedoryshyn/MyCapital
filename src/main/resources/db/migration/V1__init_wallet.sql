@@ -1,0 +1,6 @@
+CREATE TABLE wallet (
+    id UUID PRIMARY KEY,
+    title VARCHAR(255) NOT NULL,
+    balance DECIMAL(19, 2) NOT NULL DEFAULT 0.00,
+    currency VARCHAR(10) NOT NULL
+);
