@@ -27,11 +27,10 @@ repositories {
 dependencies {
 	implementation("org.springframework.boot:spring-boot-starter-data-jpa")
 	implementation("org.springframework.boot:spring-boot-starter-web")
-	implementation("org.flywaydb:flyway-core")
-	runtimeOnly("org.flywaydb:flyway-database-postgresql")
+	implementation("org.flywaydb:flyway-core:10.10.0")
+	runtimeOnly("org.postgresql:postgresql")
 	implementation("org.mapstruct:mapstruct:1.6.0")
 	compileOnly("org.projectlombok:lombok")
-	runtimeOnly("org.postgresql:postgresql")
 	annotationProcessor("org.projectlombok:lombok")
 	annotationProcessor("org.mapstruct:mapstruct-processor:1.6.0")
 	testImplementation("org.springframework.boot:spring-boot-starter-test")

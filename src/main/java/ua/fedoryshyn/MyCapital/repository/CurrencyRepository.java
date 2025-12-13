@@ -9,3 +9,5 @@ public interface CurrencyRepository extends JpaRepository<Currency, UUID> {
 
 
 
+
+

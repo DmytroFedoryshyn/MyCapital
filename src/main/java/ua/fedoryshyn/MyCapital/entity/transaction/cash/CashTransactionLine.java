@@ -9,7 +9,6 @@ import lombok.Getter;
 import lombok.Setter;
 import ua.fedoryshyn.MyCapital.entity.Category;
 import ua.fedoryshyn.MyCapital.entity.CurrencyAmount;
-import ua.fedoryshyn.MyCapital.entity.project.Project;
 
 @Getter
 @Setter
@@ -19,10 +18,6 @@ public class CashTransactionLine {
     @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "category_id")
     private Category category;
-
-    @ManyToOne(fetch = FetchType.LAZY)
-    @JoinColumn(name = "project_id")
-    private Project project;
 
     @Embedded
     private CurrencyAmount amount;

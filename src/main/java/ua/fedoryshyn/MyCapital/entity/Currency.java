@@ -15,6 +15,7 @@ import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
 import org.hibernate.annotations.UuidGenerator;
+import ua.fedoryshyn.MyCapital.entity.base.PersonalEntity;
 
 @Getter
 @Setter
@@ -22,12 +23,7 @@ import org.hibernate.annotations.UuidGenerator;
 @AllArgsConstructor
 @Entity
 @Table(name = "currency")
-public class Currency {
-
-    @Id
-    @UuidGenerator
-    @GeneratedValue
-    private UUID id;
+public class Currency extends PersonalEntity {
 
     @Column(name = "alpha_code", length = 3, nullable = false)
     private String alphaCode;
@@ -44,18 +40,11 @@ public class Currency {
     @Column(name = "name", length = 255, nullable = false)
     private String name;
 
-    @Column(name = "is_active", nullable = false)
-    private Boolean isActive;
-
     @Column(name = "flag_emoji", length = 8)
     private String flagEmoji;
 
-    @ManyToOne(fetch = FetchType.LAZY)
-    @JoinColumn(name = "user_id")
-    private User user;
 
     public Currency() {
-        this.isActive = true;
+
     }
 }
-

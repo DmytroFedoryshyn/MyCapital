@@ -8,9 +8,10 @@ import lombok.Setter;
 @Setter
 public class CashTransactionLineDto {
     private UUID categoryId;
-    private UUID projectId;
     private CurrencyAmountDto amount;
 }
+
+
 
 
 

@@ -14,13 +14,16 @@ import jakarta.persistence.JoinColumn;
 import jakarta.persistence.ManyToOne;
 import jakarta.persistence.Table;
 import java.time.LocalDateTime;
+import java.util.List;
 import java.util.UUID;
 import lombok.Getter;
 import lombok.Setter;
 import org.hibernate.annotations.UuidGenerator;
+import ua.fedoryshyn.MyCapital.entity.CashFlowRecord;
 import ua.fedoryshyn.MyCapital.entity.CurrencyAmount;
 import ua.fedoryshyn.MyCapital.entity.TransactionType;
 import ua.fedoryshyn.MyCapital.entity.User;
+import ua.fedoryshyn.MyCapital.entity.base.PersonalEntity;
 
 @Getter
 @Setter
@@ -28,19 +31,10 @@ import ua.fedoryshyn.MyCapital.entity.User;
 @Table(name = "transactions")
 @Inheritance(strategy = InheritanceType.JOINED)
 @DiscriminatorColumn(name = "type")
-public abstract class Transaction {
-    @Id
-    @UuidGenerator
-    @GeneratedValue
-    private UUID id;
-
+public abstract class Transaction extends PersonalEntity {
     @Enumerated(EnumType.STRING)
     @Column(name = "type", insertable = false, updatable = false)
     private TransactionType type;
-
-    @ManyToOne(fetch = FetchType.LAZY)
-    @JoinColumn(name = "user_id", nullable = false)
-    private User user;
 
     @Column(name = "create_at", nullable = false)
     private LocalDateTime createdAt;
@@ -51,17 +45,11 @@ public abstract class Transaction {
     @Column(name = "description")
     private String description;
 
-    @Column(name = "is_active", nullable = false)
-    private Boolean isActive;
-
-
-
-    protected Transaction() {
-        isActive = true;
-    }
+//    protected Transaction() {
+//
+//    }
 
     protected Transaction(TransactionType type) {
         this.type = type;
-        isActive = true;
     }
 }

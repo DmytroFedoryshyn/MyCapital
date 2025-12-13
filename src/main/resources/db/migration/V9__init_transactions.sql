@@ -5,15 +5,7 @@ CREATE TABLE IF NOT EXISTS categories (
     id UUID PRIMARY KEY DEFAULT gen_random_uuid(),
     name VARCHAR(255) NOT NULL,
     operation_type VARCHAR(32) NOT NULL,
-    user_id UUID REFERENCES users (id),
-    is_active BOOLEAN NOT NULL DEFAULT TRUE
-);
-
--- Projects to group transactions
-CREATE TABLE IF NOT EXISTS projects (
-    id UUID PRIMARY KEY DEFAULT gen_random_uuid(),
-    user_id UUID REFERENCES users (id),
-    project_name VARCHAR(255) NOT NULL,
+    user_id UUID NOT NULL REFERENCES users (id),
     is_active BOOLEAN NOT NULL DEFAULT TRUE
 );
 
@@ -49,7 +41,6 @@ CREATE TABLE IF NOT EXISTS income_lines (
     id BIGSERIAL PRIMARY KEY,
     income_transaction_id UUID NOT NULL REFERENCES income_transactions (cash_transaction_id) ON DELETE CASCADE,
     category_id UUID REFERENCES categories (id),
-    project_id UUID REFERENCES projects (id),
     amount NUMERIC(19, 2) NOT NULL
 );
 
@@ -58,9 +49,10 @@ CREATE TABLE IF NOT EXISTS expense_lines (
     id BIGSERIAL PRIMARY KEY,
     expense_transaction_id UUID NOT NULL REFERENCES expense_transactions (cash_transaction_id) ON DELETE CASCADE,
     category_id UUID REFERENCES categories (id),
-    project_id UUID REFERENCES projects (id),
     amount NUMERIC(19, 2) NOT NULL
 );
+
+
 
 
 

@@ -14,19 +14,14 @@ import java.util.UUID;
 import lombok.Getter;
 import lombok.Setter;
 import org.hibernate.annotations.UuidGenerator;
+import ua.fedoryshyn.MyCapital.entity.base.PersonalEntity;
 
 
 @Getter
 @Setter
 @Entity
 @Table(name = "categories")
-public class Category {
-
-    @Id
-    @UuidGenerator
-    @GeneratedValue
-    private UUID id;
-
+public class Category extends PersonalEntity {
     @Column(name = "name", nullable = false)
     private String name;
 
@@ -34,14 +29,7 @@ public class Category {
     @Column(name = "operation_type", nullable = false)
     private OperationType operationType;
 
-    @ManyToOne(fetch = FetchType.LAZY)
-    @JoinColumn(name = "user_id")
-    private User user;
-
-    @Column(name = "is_active", nullable = false)
-    private Boolean isActive;
-
     public Category() {
-        isActive = true;
+
     }
 }
