@@ -12,10 +12,5 @@ public class CategoryDto {
     private String name;
     private OperationType operationType;
     private UUID userId;
-    private Boolean isActive;
+    private Boolean active;
 }
-
-
-
-
-

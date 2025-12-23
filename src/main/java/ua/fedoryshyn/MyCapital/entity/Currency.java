@@ -19,7 +19,6 @@ import ua.fedoryshyn.MyCapital.entity.base.PersonalEntity;
 
 @Getter
 @Setter
-@Builder
 @AllArgsConstructor
 @Entity
 @Table(name = "currency")

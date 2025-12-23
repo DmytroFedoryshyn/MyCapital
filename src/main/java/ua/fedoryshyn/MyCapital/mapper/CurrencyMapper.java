@@ -11,9 +11,11 @@ import ua.fedoryshyn.MyCapital.entity.User;
 public interface CurrencyMapper {
 
     @Mapping(target = "user", source = "userId", qualifiedByName = "userFromId")
+    @Mapping(target = "active", source = "active")
     Currency toEntity(CurrencyDto dto);
 
     @Mapping(target = "userId", source = "user.id")
+    @Mapping(target = "active", source = "active")
     CurrencyDto toDto(Currency entity);
 
     @Named("userFromId")
@@ -26,8 +28,3 @@ public interface CurrencyMapper {
         return user;
     }
 }
-
-
-
-
-

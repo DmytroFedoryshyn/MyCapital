@@ -1,5 +1,6 @@
 package ua.fedoryshyn.MyCapital.controller;
 
+import static org.mockito.ArgumentMatchers.any;
 import static org.mockito.Mockito.when;
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.get;
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.post;
@@ -44,14 +45,15 @@ class WalletControllerTest {
         response.setBalance(BigDecimal.TEN);
         response.setCurrency("USD");
 
-        when(walletService.createWallet(request)).thenReturn(response);
+        when(walletService.createWallet(any(WalletDto.class)))
+            .thenReturn(response);
 
         mockMvc.perform(post("/wallets")
-                        .contentType(MediaType.APPLICATION_JSON)
-                        .content(objectMapper.writeValueAsString(request)))
-                .andExpect(status().isOk())
-                .andExpect(jsonPath("$.name").value("Main"))
-                .andExpect(jsonPath("$.currency").value("USD"));
+                .contentType(MediaType.APPLICATION_JSON)
+                .content(objectMapper.writeValueAsString(request)))
+            .andExpect(status().isOk())
+            .andExpect(jsonPath("$.name").value("Main"))
+            .andExpect(jsonPath("$.currency").value("USD"));
     }
 
     @Test
@@ -65,12 +67,10 @@ class WalletControllerTest {
         when(walletService.getAllWallets()).thenReturn(List.of(dto));
 
         mockMvc.perform(get("/wallets"))
-                .andExpect(status().isOk())
-                .andExpect(jsonPath("$[0].name").value("Spare"));
+            .andExpect(status().isOk())
+            .andExpect(jsonPath("$[0].name").value("Spare"));
     }
 }
-
-
 
 
 

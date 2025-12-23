@@ -1,5 +1,6 @@
 package ua.fedoryshyn.MyCapital.controller;
 
+import static org.mockito.ArgumentMatchers.any;
 import static org.mockito.Mockito.when;
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.get;
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.post;
@@ -35,25 +36,27 @@ class UserControllerTest {
     @MockBean
     private UserMapper userMapper;
 
+
     @Test
     void createUser() throws Exception {
         UserDto request = new UserDto();
         request.setLogin("demo");
 
         User entity = new User();
+
         UserDto response = new UserDto();
         response.setId(UUID.randomUUID());
         response.setLogin("demo");
 
-        when(userMapper.toEntity(request)).thenReturn(entity);
+        when(userMapper.toEntity(any(UserDto.class))).thenReturn(entity);
         when(userService.save(entity)).thenReturn(entity);
         when(userMapper.toDto(entity)).thenReturn(response);
 
         mockMvc.perform(post("/users")
-                        .contentType(MediaType.APPLICATION_JSON)
-                        .content(objectMapper.writeValueAsString(request)))
-                .andExpect(status().isOk())
-                .andExpect(jsonPath("$.login").value("demo"));
+                .contentType(MediaType.APPLICATION_JSON)
+                .content(objectMapper.writeValueAsString(request)))
+            .andExpect(status().isOk())
+            .andExpect(jsonPath("$.login").value("demo"));
     }
 
     @Test
@@ -71,6 +74,7 @@ class UserControllerTest {
                 .andExpect(jsonPath("$[0].login").value("user1"));
     }
 }
+
 
 
 

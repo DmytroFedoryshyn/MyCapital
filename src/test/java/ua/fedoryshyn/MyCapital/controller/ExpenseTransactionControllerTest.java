@@ -1,5 +1,6 @@
 package ua.fedoryshyn.MyCapital.controller;
 
+import static org.mockito.ArgumentMatchers.any;
 import static org.mockito.Mockito.mock;
 import static org.mockito.Mockito.when;
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.get;
@@ -41,38 +42,46 @@ class ExpenseTransactionControllerTest {
 
     @Test
     void createExpenseTransaction() throws Exception {
+        UUID userId = UUID.randomUUID();
+        UUID walletId = UUID.randomUUID();
+
         ExpenseTransactionDto request = new ExpenseTransactionDto();
-        request.setUserId(UUID.randomUUID());
-        request.setWalletId(UUID.randomUUID());
+        request.setUserId(userId);
+        request.setWalletId(walletId);
         request.setCreatedAt(LocalDateTime.now());
+
         CurrencyAmountDto amount = new CurrencyAmountDto();
         amount.setCurrencyId(UUID.randomUUID());
         amount.setAmount(BigDecimal.valueOf(50));
         request.setAmount(amount);
 
-        ExpenseTransaction entity = mock(ExpenseTransaction.class);
+        ExpenseTransaction entity = new ExpenseTransaction();
 
         ExpenseTransactionDto response = new ExpenseTransactionDto();
         response.setId(UUID.randomUUID());
-        response.setUserId(request.getUserId());
-        response.setWalletId(request.getWalletId());
+        response.setUserId(userId);
+        response.setWalletId(walletId);
         response.setCreatedAt(request.getCreatedAt());
         response.setAmount(amount);
 
-        when(expenseTransactionMapper.toEntity(request)).thenReturn(entity);
-        when(expenseTransactionService.save(entity)).thenReturn(entity);
-        when(expenseTransactionMapper.toDto(entity)).thenReturn(response);
+        when(expenseTransactionMapper.toEntity(any(ExpenseTransactionDto.class)))
+            .thenReturn(entity);
+        when(expenseTransactionService.save(entity))
+            .thenReturn(entity);
+        when(expenseTransactionMapper.toDto(entity))
+            .thenReturn(response);
 
         mockMvc.perform(post("/expense-transactions")
-                        .contentType(MediaType.APPLICATION_JSON)
-                        .content(objectMapper.writeValueAsString(request)))
-                .andExpect(status().isOk())
-                .andExpect(jsonPath("$.walletId").value(request.getWalletId().toString()));
+                .contentType(MediaType.APPLICATION_JSON)
+                .content(objectMapper.writeValueAsString(request)))
+            .andExpect(status().isOk())
+            .andExpect(jsonPath("$.walletId").value(walletId.toString()));
     }
 
     @Test
     void getAllExpenseTransactions() throws Exception {
-        ExpenseTransaction entity = mock(ExpenseTransaction.class);
+        ExpenseTransaction entity = new ExpenseTransaction();
+
         ExpenseTransactionDto dto = new ExpenseTransactionDto();
         dto.setId(UUID.randomUUID());
         dto.setWalletId(UUID.randomUUID());
@@ -81,12 +90,7 @@ class ExpenseTransactionControllerTest {
         when(expenseTransactionMapper.toDto(entity)).thenReturn(dto);
 
         mockMvc.perform(get("/expense-transactions"))
-                .andExpect(status().isOk())
-                .andExpect(jsonPath("$[0].id").value(dto.getId().toString()));
+            .andExpect(status().isOk())
+            .andExpect(jsonPath("$[0].id").value(dto.getId().toString()));
     }
 }
-
-
-
-
-

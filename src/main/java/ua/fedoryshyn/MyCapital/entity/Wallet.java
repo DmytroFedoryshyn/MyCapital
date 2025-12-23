@@ -26,6 +26,9 @@ public class Wallet extends PersonalEntity {
     @Column(name = "balance", nullable = false)
     private BigDecimal balance;
 
+    @Column(name = "name", nullable = false)
+    private String name;
+
     @Column(name = "currency", nullable = false)
     private String currency;
 }

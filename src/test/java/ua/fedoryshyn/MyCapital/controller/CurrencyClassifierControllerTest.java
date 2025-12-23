@@ -1,5 +1,6 @@
 package ua.fedoryshyn.MyCapital.controller;
 
+import static org.mockito.ArgumentMatchers.any;
 import static org.mockito.Mockito.when;
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.get;
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.post;
@@ -42,26 +43,31 @@ class CurrencyClassifierControllerTest {
         request.setName("US Dollar");
 
         CurrencyClassifier entity = new CurrencyClassifier();
+
         CurrencyClassifierDto response = new CurrencyClassifierDto();
         response.setAlphaCode("USD");
         response.setNumericCode("840");
         response.setName("US Dollar");
 
-        when(classifierMapper.toEntity(request)).thenReturn(entity);
-        when(classifierService.save(entity)).thenReturn(entity);
-        when(classifierMapper.toDto(entity)).thenReturn(response);
+        when(classifierMapper.toEntity(any(CurrencyClassifierDto.class)))
+            .thenReturn(entity);
+        when(classifierService.save(entity))
+            .thenReturn(entity);
+        when(classifierMapper.toDto(entity))
+            .thenReturn(response);
 
         mockMvc.perform(post("/currency-classifiers")
-                        .contentType(MediaType.APPLICATION_JSON)
-                        .content(objectMapper.writeValueAsString(request)))
-                .andExpect(status().isOk())
-                .andExpect(jsonPath("$.alphaCode").value("USD"))
-                .andExpect(jsonPath("$.name").value("US Dollar"));
+                .contentType(MediaType.APPLICATION_JSON)
+                .content(objectMapper.writeValueAsString(request)))
+            .andExpect(status().isOk())
+            .andExpect(jsonPath("$.alphaCode").value("USD"))
+            .andExpect(jsonPath("$.name").value("US Dollar"));
     }
 
     @Test
     void getAllClassifiers() throws Exception {
         CurrencyClassifier entity = new CurrencyClassifier();
+
         CurrencyClassifierDto dto = new CurrencyClassifierDto();
         dto.setAlphaCode("EUR");
         dto.setNumericCode("978");
@@ -71,12 +77,7 @@ class CurrencyClassifierControllerTest {
         when(classifierMapper.toDto(entity)).thenReturn(dto);
 
         mockMvc.perform(get("/currency-classifiers"))
-                .andExpect(status().isOk())
-                .andExpect(jsonPath("$[0].alphaCode").value("EUR"));
+            .andExpect(status().isOk())
+            .andExpect(jsonPath("$[0].alphaCode").value("EUR"));
     }
 }
-
-
-
-
-

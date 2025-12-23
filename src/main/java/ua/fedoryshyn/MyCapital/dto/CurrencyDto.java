@@ -13,10 +13,11 @@ public class CurrencyDto {
     private String symbol;
     private Integer decimals;
     private String name;
-    private Boolean isActive;
+    private Boolean active;
     private String flagEmoji;
     private UUID userId;
 }
+
 
 
 

@@ -8,9 +8,9 @@ import lombok.Getter;
 import lombok.Setter;
 import ua.fedoryshyn.MyCapital.entity.User;
 
-@MappedSuperclass
 @Getter
 @Setter
+@MappedSuperclass
 public abstract class PersonalEntity extends BaseEntity {
 
     @ManyToOne(fetch = FetchType.LAZY, optional = false)

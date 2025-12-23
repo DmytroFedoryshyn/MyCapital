@@ -1,5 +1,6 @@
 package ua.fedoryshyn.MyCapital.controller;
 
+import static org.mockito.ArgumentMatchers.any;
 import static org.mockito.Mockito.when;
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.get;
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.post;
@@ -41,29 +42,36 @@ class CurrencyControllerTest {
         request.setAlphaCode("USD");
         request.setNumericCode("840");
         request.setName("US Dollar");
+        request.setActive(true);
 
         Currency entity = new Currency();
+
         CurrencyDto response = new CurrencyDto();
         response.setId(UUID.randomUUID());
         response.setAlphaCode("USD");
         response.setNumericCode("840");
         response.setName("US Dollar");
+        response.setActive(true);
 
-        when(currencyMapper.toEntity(request)).thenReturn(entity);
-        when(currencyService.save(entity)).thenReturn(entity);
-        when(currencyMapper.toDto(entity)).thenReturn(response);
+        when(currencyMapper.toEntity(any(CurrencyDto.class)))
+            .thenReturn(entity);
+        when(currencyService.save(entity))
+            .thenReturn(entity);
+        when(currencyMapper.toDto(entity))
+            .thenReturn(response);
 
         mockMvc.perform(post("/currencies")
-                        .contentType(MediaType.APPLICATION_JSON)
-                        .content(objectMapper.writeValueAsString(request)))
-                .andExpect(status().isOk())
-                .andExpect(jsonPath("$.alphaCode").value("USD"))
-                .andExpect(jsonPath("$.name").value("US Dollar"));
+                .contentType(MediaType.APPLICATION_JSON)
+                .content(objectMapper.writeValueAsString(request)))
+            .andExpect(status().isOk())
+            .andExpect(jsonPath("$.alphaCode").value("USD"))
+            .andExpect(jsonPath("$.name").value("US Dollar"));
     }
 
     @Test
     void getAllCurrencies() throws Exception {
         Currency entity = new Currency();
+
         CurrencyDto dto = new CurrencyDto();
         dto.setId(UUID.randomUUID());
         dto.setAlphaCode("EUR");
@@ -74,12 +82,7 @@ class CurrencyControllerTest {
         when(currencyMapper.toDto(entity)).thenReturn(dto);
 
         mockMvc.perform(get("/currencies"))
-                .andExpect(status().isOk())
-                .andExpect(jsonPath("$[0].alphaCode").value("EUR"));
+            .andExpect(status().isOk())
+            .andExpect(jsonPath("$[0].alphaCode").value("EUR"));
     }
 }
-
-
-
-
-

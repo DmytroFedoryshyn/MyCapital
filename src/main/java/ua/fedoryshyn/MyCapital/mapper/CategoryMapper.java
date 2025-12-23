@@ -11,9 +11,11 @@ import ua.fedoryshyn.MyCapital.entity.User;
 public interface CategoryMapper {
 
     @Mapping(target = "user", source = "userId", qualifiedByName = "userFromId")
+    @Mapping(target = "active", source = "active")
     Category toEntity(CategoryDto dto);
 
     @Mapping(target = "userId", source = "user.id")
+    @Mapping(target = "active", source = "active")
     CategoryDto toDto(Category entity);
 
     @Named("userFromId")
@@ -26,8 +28,3 @@ public interface CategoryMapper {
         return user;
     }
 }
-
-
-
-
-

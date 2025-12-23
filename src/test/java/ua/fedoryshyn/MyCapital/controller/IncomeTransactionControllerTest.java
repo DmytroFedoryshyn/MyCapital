@@ -1,5 +1,6 @@
 package ua.fedoryshyn.MyCapital.controller;
 
+import static org.mockito.ArgumentMatchers.any;
 import static org.mockito.Mockito.mock;
 import static org.mockito.Mockito.when;
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.get;
@@ -41,38 +42,46 @@ class IncomeTransactionControllerTest {
 
     @Test
     void createIncomeTransaction() throws Exception {
+        UUID userId = UUID.randomUUID();
+        UUID walletId = UUID.randomUUID();
+
         IncomeTransactionDto request = new IncomeTransactionDto();
-        request.setUserId(UUID.randomUUID());
-        request.setWalletId(UUID.randomUUID());
+        request.setUserId(userId);
+        request.setWalletId(walletId);
         request.setCreatedAt(LocalDateTime.now());
+
         CurrencyAmountDto amount = new CurrencyAmountDto();
         amount.setCurrencyId(UUID.randomUUID());
         amount.setAmount(BigDecimal.valueOf(100));
         request.setAmount(amount);
 
-        IncomeTransaction entity = mock(IncomeTransaction.class);
+        IncomeTransaction entity = new IncomeTransaction();
 
         IncomeTransactionDto response = new IncomeTransactionDto();
         response.setId(UUID.randomUUID());
-        response.setUserId(request.getUserId());
-        response.setWalletId(request.getWalletId());
+        response.setUserId(userId);
+        response.setWalletId(walletId);
         response.setCreatedAt(request.getCreatedAt());
         response.setAmount(amount);
 
-        when(incomeTransactionMapper.toEntity(request)).thenReturn(entity);
-        when(incomeTransactionService.save(entity)).thenReturn(entity);
-        when(incomeTransactionMapper.toDto(entity)).thenReturn(response);
+        when(incomeTransactionMapper.toEntity(any(IncomeTransactionDto.class)))
+            .thenReturn(entity);
+        when(incomeTransactionService.save(entity))
+            .thenReturn(entity);
+        when(incomeTransactionMapper.toDto(entity))
+            .thenReturn(response);
 
         mockMvc.perform(post("/income-transactions")
-                        .contentType(MediaType.APPLICATION_JSON)
-                        .content(objectMapper.writeValueAsString(request)))
-                .andExpect(status().isOk())
-                .andExpect(jsonPath("$.walletId").value(request.getWalletId().toString()));
+                .contentType(MediaType.APPLICATION_JSON)
+                .content(objectMapper.writeValueAsString(request)))
+            .andExpect(status().isOk())
+            .andExpect(jsonPath("$.walletId").value(walletId.toString()));
     }
 
     @Test
     void getAllIncomeTransactions() throws Exception {
-        IncomeTransaction entity = mock(IncomeTransaction.class);
+        IncomeTransaction entity = new IncomeTransaction();
+
         IncomeTransactionDto dto = new IncomeTransactionDto();
         dto.setId(UUID.randomUUID());
         dto.setWalletId(UUID.randomUUID());
@@ -81,8 +90,7 @@ class IncomeTransactionControllerTest {
         when(incomeTransactionMapper.toDto(entity)).thenReturn(dto);
 
         mockMvc.perform(get("/income-transactions"))
-                .andExpect(status().isOk())
-                .andExpect(jsonPath("$[0].id").value(dto.getId().toString()));
+            .andExpect(status().isOk())
+            .andExpect(jsonPath("$[0].id").value(dto.getId().toString()));
     }
 }
-

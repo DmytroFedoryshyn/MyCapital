@@ -12,4 +12,5 @@ public class WalletDto {
     private String name;
     private BigDecimal balance;
     private String currency;
+    private String title;
 }

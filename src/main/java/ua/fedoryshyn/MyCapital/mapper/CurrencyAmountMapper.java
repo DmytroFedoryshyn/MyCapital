@@ -7,7 +7,10 @@ import ua.fedoryshyn.MyCapital.dto.CurrencyAmountDto;
 import ua.fedoryshyn.MyCapital.entity.Currency;
 import ua.fedoryshyn.MyCapital.entity.CurrencyAmount;
 
-@Mapper(componentModel = "spring")
+@Mapper(
+    componentModel = "spring",
+    uses = ReferenceMapper.class
+)
 public interface CurrencyAmountMapper {
 
     @Mapping(target = "currency", source = "currencyId", qualifiedByName = "currencyFromId")
@@ -15,19 +18,4 @@ public interface CurrencyAmountMapper {
 
     @Mapping(target = "currencyId", source = "currency.id")
     CurrencyAmountDto toDto(CurrencyAmount entity);
-
-    @Named("currencyFromId")
-    default Currency currencyFromId(java.util.UUID id) {
-        if (id == null) {
-            return null;
-        }
-        Currency currency = new Currency();
-        currency.setId(id);
-        return currency;
-    }
 }
-
-
-
-
-

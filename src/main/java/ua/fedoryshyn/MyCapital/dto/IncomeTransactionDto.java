@@ -15,11 +15,6 @@ public class IncomeTransactionDto {
     private LocalDateTime createdAt;
     private CurrencyAmountDto amount;
     private String description;
-    private Boolean isActive;
+    private Boolean active;
     private List<CashTransactionLineDto> lines;
 }
-
-
-
-
-
