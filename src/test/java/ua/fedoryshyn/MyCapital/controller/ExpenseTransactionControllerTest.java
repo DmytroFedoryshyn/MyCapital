@@ -94,3 +94,4 @@ class ExpenseTransactionControllerTest {
             .andExpect(jsonPath("$[0].id").value(dto.getId().toString()));
     }
 }
+

@@ -90,3 +90,4 @@ class CategoryControllerTest {
             .andExpect(jsonPath("$[0].name").value("Utilities"));
     }
 }
+

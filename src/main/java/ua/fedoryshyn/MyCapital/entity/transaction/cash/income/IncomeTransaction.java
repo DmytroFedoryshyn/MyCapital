@@ -10,6 +10,7 @@ import java.util.ArrayList;
 import java.util.List;
 import lombok.Getter;
 import lombok.Setter;
+import ua.fedoryshyn.MyCapital.entity.transaction.cash.CashFlowRecord;
 import ua.fedoryshyn.MyCapital.entity.transaction.cash.CashTransaction;
 
 import static ua.fedoryshyn.MyCapital.entity.OperationType.INCOME;
@@ -28,5 +29,26 @@ public class IncomeTransaction extends CashTransaction {
 
     public IncomeTransaction() {
         super(INCOME);
+    }
+
+    public IncomeTransactionLine addLine() {
+        IncomeTransactionLine newLine = new IncomeTransactionLine(this);
+        lines.add(newLine);
+        return newLine;
+    }
+
+    @Override
+    public void syncMovements() {
+        clearCashFlowRecords();
+        if (isActive()) {
+            for (IncomeTransactionLine line: lines) {
+                CashFlowRecord record = addCashFlowRecord();
+                record.setDate(getCreatedAt());
+                record.setUser(getUser());
+                record.setWallet(getWallet());
+                record.setCategory(line.getCategory());
+                record.setAmount(line.getAmount());
+            }
+        }
     }
 }

@@ -10,10 +10,17 @@ import lombok.Setter;
 import ua.fedoryshyn.MyCapital.entity.Category;
 import ua.fedoryshyn.MyCapital.entity.CurrencyAmount;
 
+/**
+ * A line of income in the IncomeTransaction.
+ * */
 @Getter
 @Setter
 @MappedSuperclass
 public class CashTransactionLine {
+
+    protected CashTransactionLine() {
+
+    }
 
     @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "category_id")

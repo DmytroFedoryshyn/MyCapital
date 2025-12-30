@@ -5,24 +5,14 @@ import jakarta.persistence.DiscriminatorColumn;
 import jakarta.persistence.Entity;
 import jakarta.persistence.EnumType;
 import jakarta.persistence.Enumerated;
-import jakarta.persistence.FetchType;
-import jakarta.persistence.GeneratedValue;
-import jakarta.persistence.Id;
 import jakarta.persistence.Inheritance;
 import jakarta.persistence.InheritanceType;
-import jakarta.persistence.JoinColumn;
-import jakarta.persistence.ManyToOne;
 import jakarta.persistence.Table;
 import java.time.LocalDateTime;
-import java.util.List;
-import java.util.UUID;
 import lombok.Getter;
 import lombok.Setter;
-import org.hibernate.annotations.UuidGenerator;
-import ua.fedoryshyn.MyCapital.entity.CashFlowRecord;
 import ua.fedoryshyn.MyCapital.entity.CurrencyAmount;
 import ua.fedoryshyn.MyCapital.entity.TransactionType;
-import ua.fedoryshyn.MyCapital.entity.User;
 import ua.fedoryshyn.MyCapital.entity.base.PersonalEntity;
 
 @Getter

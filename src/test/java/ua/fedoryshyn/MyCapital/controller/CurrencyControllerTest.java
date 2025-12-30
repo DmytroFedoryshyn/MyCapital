@@ -86,3 +86,4 @@ class CurrencyControllerTest {
             .andExpect(jsonPath("$[0].alphaCode").value("EUR"));
     }
 }
+

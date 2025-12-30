@@ -11,3 +11,4 @@ public interface CurrencyClassifierRepository extends JpaRepository<CurrencyClas
 
 
 
+

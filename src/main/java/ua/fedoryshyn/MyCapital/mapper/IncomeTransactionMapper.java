@@ -29,3 +29,4 @@ public interface IncomeTransactionMapper {
     @Mapping(target = "active", source = "active")
     IncomeTransactionDto toDto(IncomeTransaction entity);
 }
+

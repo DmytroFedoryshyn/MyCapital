@@ -19,3 +19,4 @@ public interface CurrencyAmountMapper {
     @Mapping(target = "currencyId", source = "currency.id")
     CurrencyAmountDto toDto(CurrencyAmount entity);
 }
+

@@ -1,10 +1,8 @@
 package ua.fedoryshyn.MyCapital.entity.transaction.cash;
 
 import jakarta.persistence.CascadeType;
-import jakarta.persistence.CollectionTable;
 import jakarta.persistence.Column;
 import jakarta.persistence.DiscriminatorColumn;
-import jakarta.persistence.ElementCollection;
 import jakarta.persistence.Entity;
 import jakarta.persistence.EnumType;
 import jakarta.persistence.Enumerated;
@@ -18,7 +16,6 @@ import java.util.ArrayList;
 import java.util.List;
 import lombok.Getter;
 import lombok.Setter;
-import ua.fedoryshyn.MyCapital.entity.CashFlowRecord;
 import ua.fedoryshyn.MyCapital.entity.OperationType;
 import ua.fedoryshyn.MyCapital.entity.Wallet;
 import ua.fedoryshyn.MyCapital.entity.transaction.Transaction;
@@ -54,7 +51,15 @@ public abstract class CashTransaction extends Transaction {
         this.operationType = type;
     }
 
-    public void syncMovements() {
-
+    protected void clearCashFlowRecords() {
+        cashFlowRecords.clear();
     }
+
+    protected CashFlowRecord addCashFlowRecord() {
+        CashFlowRecord record = new CashFlowRecord(this);
+        cashFlowRecords.add(record);
+        return record;
+    }
+
+    public abstract void syncMovements();
 }

@@ -1,7 +1,10 @@
-package ua.fedoryshyn.MyCapital.entity;
+package ua.fedoryshyn.MyCapital.entity.transaction.cash;
 
 import java.time.LocalDateTime;
-import ua.fedoryshyn.MyCapital.entity.transaction.cash.CashTransaction;
+import ua.fedoryshyn.MyCapital.entity.Category;
+import ua.fedoryshyn.MyCapital.entity.CurrencyAmount;
+import ua.fedoryshyn.MyCapital.entity.User;
+import ua.fedoryshyn.MyCapital.entity.Wallet;
 
 import jakarta.persistence.*;
 import lombok.*;
@@ -44,4 +47,8 @@ public class CashFlowRecord {
         @AttributeOverride(name = "currency", column = @Column(name = "amount_currency", length = 3, nullable = false))
     })
     private CurrencyAmount amount;
+
+    public CashFlowRecord(CashTransaction transaction) {
+        this.transaction = transaction;
+    }
 }

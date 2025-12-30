@@ -29,3 +29,4 @@ public interface ExpenseTransactionMapper {
     @Mapping(target = "active", source = "active")
     ExpenseTransactionDto toDto(ExpenseTransaction entity);
 }
+

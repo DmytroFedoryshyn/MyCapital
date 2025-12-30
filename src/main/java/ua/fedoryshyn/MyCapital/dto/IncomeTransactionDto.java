@@ -18,3 +18,4 @@ public class IncomeTransactionDto {
     private Boolean active;
     private List<CashTransactionLineDto> lines;
 }
+
