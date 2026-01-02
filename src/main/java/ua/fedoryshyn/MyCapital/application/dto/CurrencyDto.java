@@ -1,0 +1,26 @@
+package ua.fedoryshyn.MyCapital.application.dto;
+
+import java.util.UUID;
+import lombok.Getter;
+import lombok.Setter;
+
+@Getter
+@Setter
+public class CurrencyDto {
+    private UUID id;
+    private String alphaCode;
+    private String numericCode;
+    private String symbol;
+    private Integer decimals;
+    private String name;
+    private Boolean active;
+    private String flagEmoji;
+    private UUID userId;
+}
+
+
+
+
+
+
+

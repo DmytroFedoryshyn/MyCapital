@@ -9,11 +9,12 @@ import org.springframework.boot.test.autoconfigure.web.servlet.WebMvcTest;
 import org.springframework.boot.test.mock.mockito.MockBean;
 import org.springframework.http.MediaType;
 import org.springframework.test.web.servlet.MockMvc;
-import ua.fedoryshyn.MyCapital.dto.CategoryDto;
-import ua.fedoryshyn.MyCapital.entity.Category;
-import ua.fedoryshyn.MyCapital.entity.OperationType;
+import ua.fedoryshyn.MyCapital.application.dto.CategoryDto;
+import ua.fedoryshyn.MyCapital.domain.catalog.category.Category;
+import ua.fedoryshyn.MyCapital.domain.OperationType;
 import ua.fedoryshyn.MyCapital.mapper.CategoryMapper;
-import ua.fedoryshyn.MyCapital.service.CategoryService;
+import ua.fedoryshyn.MyCapital.application.service.CategoryService;
+import ua.fedoryshyn.MyCapital.web.controller.CategoryController;
 
 import static org.mockito.ArgumentMatchers.any;
 import static org.mockito.Mockito.when;

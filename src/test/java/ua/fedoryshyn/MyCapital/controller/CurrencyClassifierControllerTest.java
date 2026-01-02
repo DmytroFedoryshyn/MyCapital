@@ -15,10 +15,11 @@ import org.springframework.boot.test.autoconfigure.web.servlet.WebMvcTest;
 import org.springframework.boot.test.mock.mockito.MockBean;
 import org.springframework.http.MediaType;
 import org.springframework.test.web.servlet.MockMvc;
-import ua.fedoryshyn.MyCapital.dto.CurrencyClassifierDto;
-import ua.fedoryshyn.MyCapital.entity.CurrencyClassifier;
+import ua.fedoryshyn.MyCapital.application.dto.CurrencyClassifierDto;
+import ua.fedoryshyn.MyCapital.domain.classifier.currency.CurrencyClassifier;
 import ua.fedoryshyn.MyCapital.mapper.CurrencyClassifierMapper;
-import ua.fedoryshyn.MyCapital.service.CurrencyClassifierService;
+import ua.fedoryshyn.MyCapital.application.service.CurrencyClassifierService;
+import ua.fedoryshyn.MyCapital.web.controller.CurrencyClassifierController;
 
 @WebMvcTest(CurrencyClassifierController.class)
 class CurrencyClassifierControllerTest {

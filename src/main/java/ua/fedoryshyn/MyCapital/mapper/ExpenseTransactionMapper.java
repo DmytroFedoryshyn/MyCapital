@@ -2,8 +2,8 @@ package ua.fedoryshyn.MyCapital.mapper;
 
 import org.mapstruct.Mapper;
 import org.mapstruct.Mapping;
-import ua.fedoryshyn.MyCapital.dto.ExpenseTransactionDto;
-import ua.fedoryshyn.MyCapital.entity.transaction.cash.expense.ExpenseTransaction;
+import ua.fedoryshyn.MyCapital.application.dto.ExpenseTransactionDto;
+import ua.fedoryshyn.MyCapital.domain.transaction.cash.expense.ExpenseTransaction;
 
 @Mapper(
     componentModel = "spring",

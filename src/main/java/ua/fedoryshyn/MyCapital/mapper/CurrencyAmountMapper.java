@@ -2,10 +2,8 @@ package ua.fedoryshyn.MyCapital.mapper;
 
 import org.mapstruct.Mapper;
 import org.mapstruct.Mapping;
-import org.mapstruct.Named;
-import ua.fedoryshyn.MyCapital.dto.CurrencyAmountDto;
-import ua.fedoryshyn.MyCapital.entity.Currency;
-import ua.fedoryshyn.MyCapital.entity.CurrencyAmount;
+import ua.fedoryshyn.MyCapital.application.dto.CurrencyAmountDto;
+import ua.fedoryshyn.MyCapital.domain.valueObject.CurrencyAmount;
 
 @Mapper(
     componentModel = "spring",

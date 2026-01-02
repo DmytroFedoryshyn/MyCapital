@@ -17,8 +17,9 @@ import org.springframework.boot.test.autoconfigure.web.servlet.WebMvcTest;
 import org.springframework.boot.test.mock.mockito.MockBean;
 import org.springframework.http.MediaType;
 import org.springframework.test.web.servlet.MockMvc;
-import ua.fedoryshyn.MyCapital.dto.WalletDto;
-import ua.fedoryshyn.MyCapital.service.WalletService;
+import ua.fedoryshyn.MyCapital.application.dto.WalletDto;
+import ua.fedoryshyn.MyCapital.application.service.WalletService;
+import ua.fedoryshyn.MyCapital.web.controller.WalletController;
 
 @WebMvcTest(WalletController.class)
 class WalletControllerTest {

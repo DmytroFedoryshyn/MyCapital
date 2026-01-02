@@ -19,11 +19,12 @@ import org.springframework.boot.test.autoconfigure.web.servlet.WebMvcTest;
 import org.springframework.boot.test.mock.mockito.MockBean;
 import org.springframework.http.MediaType;
 import org.springframework.test.web.servlet.MockMvc;
-import ua.fedoryshyn.MyCapital.dto.CurrencyAmountDto;
-import ua.fedoryshyn.MyCapital.dto.ExpenseTransactionDto;
-import ua.fedoryshyn.MyCapital.entity.transaction.cash.expense.ExpenseTransaction;
+import ua.fedoryshyn.MyCapital.application.dto.CurrencyAmountDto;
+import ua.fedoryshyn.MyCapital.application.dto.ExpenseTransactionDto;
+import ua.fedoryshyn.MyCapital.domain.transaction.cash.expense.ExpenseTransaction;
 import ua.fedoryshyn.MyCapital.mapper.ExpenseTransactionMapper;
-import ua.fedoryshyn.MyCapital.service.ExpenseTransactionService;
+import ua.fedoryshyn.MyCapital.application.service.ExpenseTransactionService;
+import ua.fedoryshyn.MyCapital.web.controller.ExpenseTransactionController;
 
 @WebMvcTest(ExpenseTransactionController.class)
 class ExpenseTransactionControllerTest {

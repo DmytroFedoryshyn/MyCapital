@@ -3,10 +3,10 @@ package ua.fedoryshyn.MyCapital.mapper;
 import java.util.UUID;
 import org.mapstruct.Mapper;
 import org.mapstruct.Named;
-import ua.fedoryshyn.MyCapital.entity.User;
-import ua.fedoryshyn.MyCapital.entity.Wallet;
-import ua.fedoryshyn.MyCapital.entity.Category;
-import ua.fedoryshyn.MyCapital.entity.Currency;
+import ua.fedoryshyn.MyCapital.domain.catalog.user.User;
+import ua.fedoryshyn.MyCapital.infrastructure.persistence.jpa.catalog.wallet.WalletEntity;
+import ua.fedoryshyn.MyCapital.domain.catalog.category.Category;
+import ua.fedoryshyn.MyCapital.domain.catalog.currency.Currency;
 
 @Mapper(componentModel = "spring")
 public interface ReferenceMapper {
@@ -22,11 +22,11 @@ public interface ReferenceMapper {
     }
 
     @Named("walletFromId")
-    default Wallet walletFromId(UUID id) {
+    default WalletEntity walletFromId(UUID id) {
         if (id == null) {
             return null;
         }
-        Wallet wallet = new Wallet();
+        WalletEntity wallet = new WalletEntity();
         wallet.setId(id);
         return wallet;
     }

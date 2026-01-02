@@ -16,10 +16,11 @@ import org.springframework.boot.test.autoconfigure.web.servlet.WebMvcTest;
 import org.springframework.boot.test.mock.mockito.MockBean;
 import org.springframework.http.MediaType;
 import org.springframework.test.web.servlet.MockMvc;
-import ua.fedoryshyn.MyCapital.dto.UserDto;
-import ua.fedoryshyn.MyCapital.entity.User;
+import ua.fedoryshyn.MyCapital.application.dto.UserDto;
+import ua.fedoryshyn.MyCapital.domain.catalog.user.User;
 import ua.fedoryshyn.MyCapital.mapper.UserMapper;
-import ua.fedoryshyn.MyCapital.service.UserService;
+import ua.fedoryshyn.MyCapital.application.service.UserService;
+import ua.fedoryshyn.MyCapital.web.controller.UserController;
 
 @WebMvcTest(UserController.class)
 class UserControllerTest {

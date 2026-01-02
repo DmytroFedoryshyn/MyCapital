@@ -3,9 +3,9 @@ package ua.fedoryshyn.MyCapital.mapper;
 import org.mapstruct.Mapper;
 import org.mapstruct.Mapping;
 import org.mapstruct.Named;
-import ua.fedoryshyn.MyCapital.dto.CurrencyDto;
-import ua.fedoryshyn.MyCapital.entity.Currency;
-import ua.fedoryshyn.MyCapital.entity.User;
+import ua.fedoryshyn.MyCapital.application.dto.CurrencyDto;
+import ua.fedoryshyn.MyCapital.domain.catalog.currency.Currency;
+import ua.fedoryshyn.MyCapital.domain.catalog.user.User;
 
 @Mapper(componentModel = "spring")
 public interface CurrencyMapper {

@@ -3,9 +3,9 @@ package ua.fedoryshyn.MyCapital.mapper;
 import org.mapstruct.Mapper;
 import org.mapstruct.Mapping;
 import org.mapstruct.Named;
-import ua.fedoryshyn.MyCapital.dto.CategoryDto;
-import ua.fedoryshyn.MyCapital.entity.Category;
-import ua.fedoryshyn.MyCapital.entity.User;
+import ua.fedoryshyn.MyCapital.application.dto.CategoryDto;
+import ua.fedoryshyn.MyCapital.domain.catalog.category.Category;
+import ua.fedoryshyn.MyCapital.domain.catalog.user.User;
 
 @Mapper(componentModel = "spring")
 public interface CategoryMapper {
