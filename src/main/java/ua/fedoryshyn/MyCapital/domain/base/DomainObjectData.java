@@ -1,9 +1,12 @@
 package ua.fedoryshyn.MyCapital.domain.base;
 
 import java.util.UUID;
+import ua.fedoryshyn.MyCapital.domain.user.User;
 
 public interface DomainObjectData {
-    UUID getId();
+    public UUID getId();
 
-    boolean isActive();
+    public boolean isActive();
+
+    public User getUser();
 }

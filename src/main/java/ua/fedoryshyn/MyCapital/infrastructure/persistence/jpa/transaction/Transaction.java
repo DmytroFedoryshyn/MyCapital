@@ -1,4 +1,4 @@
-package ua.fedoryshyn.MyCapital.domain.transaction;
+package ua.fedoryshyn.MyCapital.infrastructure.persistence.jpa.transaction;
 
 import jakarta.persistence.Column;
 import jakarta.persistence.DiscriminatorColumn;
@@ -12,7 +12,9 @@ import java.time.LocalDateTime;
 import lombok.Getter;
 import lombok.Setter;
 import ua.fedoryshyn.MyCapital.domain.base.DomainObject;
-import ua.fedoryshyn.MyCapital.domain.valueObject.CurrencyAmount;
+import ua.fedoryshyn.MyCapital.domain.transaction.TransactionData;
+import ua.fedoryshyn.MyCapital.entity.base.HibernateEntity;
+import ua.fedoryshyn.MyCapital.infrastructure.persistence.jpa.valueObject.CurrencyAmount;
 
 @Getter
 @Setter
@@ -20,7 +22,7 @@ import ua.fedoryshyn.MyCapital.domain.valueObject.CurrencyAmount;
 @Table(name = "transactions")
 @Inheritance(strategy = InheritanceType.JOINED)
 @DiscriminatorColumn(name = "type")
-public abstract class Transaction extends DomainObject {
+public abstract class Transaction extends HibernateEntity {
     @Enumerated(EnumType.STRING)
     @Column(name = "type", insertable = false, updatable = false)
     private TransactionType type;

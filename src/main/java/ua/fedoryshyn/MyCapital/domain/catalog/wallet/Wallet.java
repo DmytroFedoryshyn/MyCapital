@@ -1,11 +1,11 @@
 package ua.fedoryshyn.MyCapital.domain.catalog.wallet;
 
-public class Wallet {
+import ua.fedoryshyn.MyCapital.domain.base.DomainObject;
+
+public class Wallet extends DomainObject {
     private final WalletData state;
 
     public Wallet(WalletData state) {
         this.state = state;
     }
-
-
 }

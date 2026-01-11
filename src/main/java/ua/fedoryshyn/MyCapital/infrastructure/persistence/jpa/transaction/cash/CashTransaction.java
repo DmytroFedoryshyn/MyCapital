@@ -1,4 +1,6 @@
-package ua.fedoryshyn.MyCapital.domain.transaction.cash;
+package ua.fedoryshyn.MyCapital.infrastructure.persistence.jpa.transaction.cash;
+
+import static ua.fedoryshyn.MyCapital.domain.transaction.TransactionType.CASH;
 
 import jakarta.persistence.CascadeType;
 import jakarta.persistence.Column;
@@ -16,11 +18,9 @@ import java.util.ArrayList;
 import java.util.List;
 import lombok.Getter;
 import lombok.Setter;
-import ua.fedoryshyn.MyCapital.domain.OperationType;
+import ua.fedoryshyn.MyCapital.infrastructure.persistence.jpa.OperationType;
 import ua.fedoryshyn.MyCapital.infrastructure.persistence.jpa.catalog.wallet.Wallet;
-import ua.fedoryshyn.MyCapital.domain.transaction.Transaction;
-
-import static ua.fedoryshyn.MyCapital.domain.transaction.TransactionType.CASH;
+import ua.fedoryshyn.MyCapital.infrastructure.persistence.jpa.transaction.Transaction;
 
 @Getter
 @Setter

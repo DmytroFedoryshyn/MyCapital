@@ -1,0 +1,54 @@
+package ua.fedoryshyn.MyCapital.infrastructure.persistence.jpa.transaction.cash.income;
+
+import static ua.fedoryshyn.MyCapital.domain.OperationType.INCOME;
+
+import jakarta.persistence.CollectionTable;
+import jakarta.persistence.DiscriminatorValue;
+import jakarta.persistence.ElementCollection;
+import jakarta.persistence.Entity;
+import jakarta.persistence.PrimaryKeyJoinColumn;
+import jakarta.persistence.Table;
+import java.util.ArrayList;
+import java.util.List;
+import lombok.Getter;
+import lombok.Setter;
+import ua.fedoryshyn.MyCapital.infrastructure.persistence.jpa.transaction.cash.CashFlowRecord;
+import ua.fedoryshyn.MyCapital.infrastructure.persistence.jpa.transaction.cash.CashTransaction;
+
+@Getter
+@Setter
+@Entity
+@Table(name = "income_transactions")
+@DiscriminatorValue("INCOME")
+@PrimaryKeyJoinColumn(name = "cash_transaction_id")
+public class IncomeTransaction extends CashTransaction {
+
+    @ElementCollection
+    @CollectionTable(name = "income_lines")
+    private List<IncomeTransactionLine> lines = new ArrayList<>();
+
+    public IncomeTransaction() {
+        super(INCOME);
+    }
+
+    public IncomeTransactionLine addLine() {
+        IncomeTransactionLine newLine = new IncomeTransactionLine(this);
+        lines.add(newLine);
+        return newLine;
+    }
+
+    @Override
+    public void syncMovements() {
+        clearCashFlowRecords();
+        if (isActive()) {
+            for (IncomeTransactionLine line: lines) {
+                CashFlowRecord record = addCashFlowRecord();
+                record.setDate(getCreatedAt());
+                record.setUser(getUser());
+                record.setWallet(getWallet());
+                record.setCategory(line.getCategory());
+                record.setAmount(line.getAmount());
+            }
+        }
+    }
+}

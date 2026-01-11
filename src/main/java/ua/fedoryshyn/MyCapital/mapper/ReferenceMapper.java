@@ -3,8 +3,8 @@ package ua.fedoryshyn.MyCapital.mapper;
 import java.util.UUID;
 import org.mapstruct.Mapper;
 import org.mapstruct.Named;
-import ua.fedoryshyn.MyCapital.domain.catalog.user.User;
-import ua.fedoryshyn.MyCapital.infrastructure.persistence.jpa.catalog.wallet.WalletEntity;
+import ua.fedoryshyn.MyCapital.domain.user.User;
+import ua.fedoryshyn.MyCapital.infrastructure.persistence.jpa.catalog.wallet.Wallet;
 import ua.fedoryshyn.MyCapital.domain.catalog.category.Category;
 import ua.fedoryshyn.MyCapital.domain.catalog.currency.Currency;
 
@@ -22,11 +22,11 @@ public interface ReferenceMapper {
     }
 
     @Named("walletFromId")
-    default WalletEntity walletFromId(UUID id) {
+    default Wallet walletFromId(UUID id) {
         if (id == null) {
             return null;
         }
-        WalletEntity wallet = new WalletEntity();
+        Wallet wallet = new Wallet();
         wallet.setId(id);
         return wallet;
     }

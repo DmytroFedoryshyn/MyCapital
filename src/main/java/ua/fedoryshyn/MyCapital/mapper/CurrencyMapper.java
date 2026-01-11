@@ -5,7 +5,7 @@ import org.mapstruct.Mapping;
 import org.mapstruct.Named;
 import ua.fedoryshyn.MyCapital.application.dto.CurrencyDto;
 import ua.fedoryshyn.MyCapital.domain.catalog.currency.Currency;
-import ua.fedoryshyn.MyCapital.domain.catalog.user.User;
+import ua.fedoryshyn.MyCapital.domain.user.User;
 
 @Mapper(componentModel = "spring")
 public interface CurrencyMapper {

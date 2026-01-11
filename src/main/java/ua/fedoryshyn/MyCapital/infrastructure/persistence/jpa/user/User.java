@@ -1,0 +1,26 @@
+package ua.fedoryshyn.MyCapital.infrastructure.persistence.jpa.user;
+
+import jakarta.persistence.Column;
+import jakarta.persistence.Entity;
+import jakarta.persistence.Table;
+import lombok.AllArgsConstructor;
+import lombok.Builder;
+import lombok.Getter;
+import lombok.NoArgsConstructor;
+import lombok.Setter;
+import ua.fedoryshyn.MyCapital.domain.base.DomainObject;
+import ua.fedoryshyn.MyCapital.entity.base.HibernateEntity;
+
+@Getter
+@Setter
+@Builder
+@NoArgsConstructor
+@AllArgsConstructor
+@Entity
+@Table(name = "users")
+public class User extends HibernateEntity {
+
+    @Column(name = "login", nullable = false, unique = true)
+    private String login;
+}
+

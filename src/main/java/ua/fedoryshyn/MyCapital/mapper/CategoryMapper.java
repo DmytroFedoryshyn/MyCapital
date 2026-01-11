@@ -5,7 +5,7 @@ import org.mapstruct.Mapping;
 import org.mapstruct.Named;
 import ua.fedoryshyn.MyCapital.application.dto.CategoryDto;
 import ua.fedoryshyn.MyCapital.domain.catalog.category.Category;
-import ua.fedoryshyn.MyCapital.domain.catalog.user.User;
+import ua.fedoryshyn.MyCapital.domain.user.User;
 
 @Mapper(componentModel = "spring")
 public interface CategoryMapper {

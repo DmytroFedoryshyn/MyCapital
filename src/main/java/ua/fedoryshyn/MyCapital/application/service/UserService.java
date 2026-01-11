@@ -5,7 +5,7 @@ import java.util.List;
 import java.util.UUID;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
-import ua.fedoryshyn.MyCapital.domain.catalog.user.User;
+import ua.fedoryshyn.MyCapital.domain.user.User;
 import ua.fedoryshyn.MyCapital.infrastructure.persistence.jpa.UserRepository;
 
 @Service

@@ -9,8 +9,7 @@ import lombok.Builder;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
-import ua.fedoryshyn.MyCapital.domain.base.PersonalDomainObject;
-import ua.fedoryshyn.MyCapital.domain.catalog.wallet.WalletData;
+import ua.fedoryshyn.MyCapital.entity.base.HibernateEntity;
 
 @Getter
 @Setter
@@ -19,7 +18,7 @@ import ua.fedoryshyn.MyCapital.domain.catalog.wallet.WalletData;
 @AllArgsConstructor
 @Entity
 @Table(name = "wallet")
-public class WalletEntity extends PersonalDomainObject implements WalletData {
+public class Wallet extends HibernateEntity {
 
     @Column(name = "title", nullable = false)
     private String title;

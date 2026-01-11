@@ -27,12 +27,12 @@ public class WalletController {
 
     @PostMapping
     public WalletDto save(@RequestBody WalletDto walletDto) {
-        return walletService.createWallet(walletDto);
+        return walletService.create(walletDto);
     }
 
     @GetMapping
     public List<WalletDto> getAll() {
-        return walletService.getAllWallets();
+        return walletService.getAll();
     }
 
     @GetMapping("/{id}")

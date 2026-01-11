@@ -1,6 +1,16 @@
 package ua.fedoryshyn.MyCapital.domain.catalog;
 
-import ua.fedoryshyn.MyCapital.domain.base.PersonalDomainObject;
+import lombok.Getter;
+import lombok.Setter;
+import ua.fedoryshyn.MyCapital.domain.base.DomainObject;
 
-public abstract class Catalog extends PersonalDomainObject {
+@Getter
+@Setter
+public abstract class Catalog extends DomainObject {
+    private String name;
+
+    protected Catalog(CatalogData data) {
+        super(data);
+        this.name = data.getName();
+    }
 }

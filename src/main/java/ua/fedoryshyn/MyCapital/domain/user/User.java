@@ -1,4 +1,4 @@
-package ua.fedoryshyn.MyCapital.domain.catalog.user;
+package ua.fedoryshyn.MyCapital.domain.user;
 
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
